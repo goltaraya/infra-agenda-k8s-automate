@@ -1,0 +1,24 @@
+version: '3'
+services:
+  agenda:
+    image: goltaraya/agenda:v2
+    ports:
+      - 8080:80
+  db:
+    image: mariadb:10.11
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./agenda-de-devs/agenda.sql:/docker-entrypoint-initdb.d/agenda.sql
+    environment:
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: 1234
+      MARIADB_ROOT_PASSWORD: 1234
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    restart: always
+    ports:
+      - 8000:80
+    environment:
+      - PMA_ARBITRARY=1
