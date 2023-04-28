@@ -44,3 +44,5 @@
       community.docker.docker_compose:
         project_src: /vagrant/agenda/
       register: output
+    - name: Installing K3d
+      
